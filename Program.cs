@@ -18,7 +18,7 @@ public class Program
         var sqlProvider = new SqlConnectionProvider(connectionString);
         var bot = new TelegramBotClient(token);
         var telegramService = new TelegramService(bot, sqlProvider);
-        await telegramService.StartListening();
+        telegramService.StartListening();
 
         Console.ReadKey();
     }

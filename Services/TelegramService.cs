@@ -20,7 +20,7 @@ public class TelegramService
                           throw new ArgumentNullException(nameof(sqlConnectionProvider));
     }
 
-    public async Task StartListening()
+    public void StartListening()
     {
         _context = new TelegramBotMenuContext(_bot, _userRepository);
         _bot.StartReceiving(UpdateHandler, ErrorHandler);
@@ -32,13 +32,19 @@ public class TelegramService
         throw new NotImplementedException();
     }
 
-    public async Task UpdateHandler(ITelegramBotClient bot, Update update, CancellationToken ct)
+    public Task UpdateHandler(ITelegramBotClient bot, Update update, CancellationToken ct)
     {
+        Console.WriteLine($"{DateTime.Now}: {update.Message.Chat.Id}");
         var message = update.Message;
         if (message != null)
         {
-            await _context.ProcessMessage(update);
+            Task.Run(async() =>
+            {
+                await _context.ProcessMessage(update);
+            });
         }
+
+        return Task.CompletedTask;
     }
 }
 

@@ -10,7 +10,7 @@ namespace test.MenuStates.States;
 public class DownloadFileMenu : IStateMenu
 {
     private readonly ITelegramBotClient _bot;
-    private DownloadService _downloadService;
+    private readonly DownloadService _downloadService;
     private const string Button1 = "Главное Меню";
 
     public DownloadFileMenu(ITelegramBotClient bot)

@@ -12,7 +12,7 @@ namespace test.MenuStates.States
 {
     public class DownloadService
     {
-        private ITelegramBotClient _bot;
+        private readonly ITelegramBotClient _bot;
         public DownloadService(ITelegramBotClient bot)
         {
             _bot = bot ?? throw new ArgumentNullException(nameof(bot));
@@ -32,7 +32,6 @@ namespace test.MenuStates.States
             var destinationFilePath = $"{Environment.CurrentDirectory}\\economic.xlsx";
             Console.WriteLine(destinationFilePath);
             var sw1 = new Stopwatch();
-            Thread.Sleep(10000);
             sw1.Restart();
             try
             {
